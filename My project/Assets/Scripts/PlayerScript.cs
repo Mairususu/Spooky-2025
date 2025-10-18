@@ -7,8 +7,8 @@ public class PlayerScript : MonoBehaviour
 {
 
     private Rigidbody2D _rigidbody;
-    [SerializeField] private float speed = 50.0f;
-    [SerializeField] private float dashDistance = 0.5f;
+    [SerializeField] private float speed = 5.0f;
+    [SerializeField] private float dashDistance = 2.0f;
     [SerializeField] private float dashCooldown = 0.5f;
     private float cooldownStart = 0.0f;
     
