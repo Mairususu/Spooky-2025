@@ -1,14 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Mainscreen : MonoBehaviour
 {
-    [SerializeField] private GameObject MainPanel;
-    [SerializeField] private GameObject OptionsPanel;
-    [SerializeField] private GameObject CreditsPanel;
+    [SerializeField] private GameObject mainPanel;
+    [SerializeField] private GameObject optionsPanel;
+    [SerializeField] private GameObject creditsPanel;
     void Start()
     {
         ToMainPanel();
@@ -28,27 +25,28 @@ public class Mainscreen : MonoBehaviour
 
     public void ToMainPanel()
     {
-        MainPanel.SetActive(true);
-        OptionsPanel.SetActive(false);
-        CreditsPanel.SetActive(false);
+        mainPanel.SetActive(true);
+        optionsPanel.SetActive(false);
+        creditsPanel.SetActive(false);
     }
 
     public void ToOptionsPanel()
     {
-        MainPanel.SetActive(false);
-        OptionsPanel.SetActive(true);
-        CreditsPanel.SetActive(false);
+        mainPanel.SetActive(false);
+        optionsPanel.SetActive(true);
+        creditsPanel.SetActive(false);
     }
 
     public void ToCreditsPanel()
     {
-        MainPanel.SetActive(false);
-        OptionsPanel.SetActive(false);
-        CreditsPanel.SetActive(true);
+        mainPanel.SetActive(false);
+        optionsPanel.SetActive(false);
+        creditsPanel.SetActive(true);
+        
     }
 
     #endregion
-    private void OnApplicationQuit()
+    public void OnApplicationQuit()
     {
         Application.Quit();
     }
