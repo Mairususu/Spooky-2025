@@ -11,10 +11,17 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private float dashDistance = 2.0f;
     [SerializeField] private float dashCooldown = 0.5f;
     private float cooldownStart = 0.0f;
+    [SerializeField] public static PlayerScript Instance;
+    
+    
     
 
     private void Awake()
     {
+        if (Instance != null && Instance.gameObject != null)
+            Destroy(Instance.gameObject);
+        Instance = this;
+        
         _rigidbody = GetComponent<Rigidbody2D>();
     }
     
