@@ -11,9 +11,8 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private float dashDistance = 2.0f;
     [SerializeField] private float dashCooldown = 0.5f;
     private float cooldownStart = 0.0f;
+    private Vector2 lastPosition;
     [SerializeField] public static PlayerScript Instance;
-    
-    
     
 
     private void Awake()
@@ -27,7 +26,10 @@ public class PlayerScript : MonoBehaviour
     
     public void OnMove(InputValue value)
     {
-        _rigidbody.velocity = value.Get<Vector2>() * speed;
+        Vector2 val = value.Get<Vector2>();
+        _rigidbody.velocity = val * speed;
+        Debug.Log(val);
+        if (val.magnitude >= 0.2) lastPosition = val;
     }
 
     public void OnDash()
@@ -37,16 +39,11 @@ public class PlayerScript : MonoBehaviour
             cooldownStart = Time.time;
             if (_rigidbody.velocity == Vector2.zero)
             {
-                _rigidbody.position += Vector2.up * dashDistance;
+                _rigidbody.position += lastPosition.normalized * dashDistance;
             }else
             {
                 _rigidbody.position += _rigidbody.velocity.normalized * dashDistance;
             }
         }
-        
-
     }
-    
-    
-    
 }
