@@ -13,7 +13,7 @@ public class PlayerScript : MonoBehaviour
     private float cooldownStart = 0.0f;
     private Vector2 lastPosition;
     [SerializeField] public static PlayerScript Instance;
-    
+    [SerializeField] private GameObject AttackPrefab;
 
     private void Awake()
     {
@@ -24,15 +24,14 @@ public class PlayerScript : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
     }
     
-    public void OnMove(InputValue value)
+    private void OnMove(InputValue value)
     {
         Vector2 val = value.Get<Vector2>();
         _rigidbody.velocity = val * speed;
-        Debug.Log(val);
         if (val.magnitude >= 0.2) lastPosition = val;
     }
 
-    public void OnDash()
+    private void OnDash()
     {
         if (Time.time - cooldownStart >= dashCooldown)
         {
@@ -46,4 +45,12 @@ public class PlayerScript : MonoBehaviour
             }
         }
     }
+
+    private void OnAttack()
+    {
+        Instantiate(AttackPrefab, transform);
+
+    }
+    
+    
 }
