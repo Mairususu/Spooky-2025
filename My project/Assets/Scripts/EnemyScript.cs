@@ -4,11 +4,21 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
-    [SerializeField] private float lifepoint = 0.5f;
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private float lifepoint = 50f;
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private GameObject Player;
+
+    [SerializeField] private EnemyType type;
+
+
+    public enum EnemyType
     {
-        
+        Yeux, Slenderman, Araignée ,Tentacule, Cerveau 
+    }
+    // Start is called before the first frame update
+    void Awake()
+    {
+        Player=PlayerScript.Instance.gameObject ;
     }
 
     // Update is called once per frame
@@ -21,9 +31,15 @@ public class EnemyScript : MonoBehaviour
     {
         
     }
+    void OnTriggerEnter ( Collider other)
+    {
+        if (!other.gameObject.CompareTag("PlayerAttack")) return;
+        TakeDamage(other.gameObject.GetComponent<PlayersAttack>().damage);
+    }
 
     public void TakeDamage(float damage)
     {
-        
+        lifepoint-=damage;
+        if(lifepoint<=0) Destroy(gameObject);
     }
 }
