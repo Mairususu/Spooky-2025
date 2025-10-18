@@ -46,11 +46,23 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    private void OnAttack()
+    private void OnPrimarySkill()
     {
-        Instantiate(AttackPrefab, transform);
+        
+    }
 
+    private void OnSecondarySkill()
+    {
+        
     }
     
+    private void OnUtilitySkill()
+    {
+        
+    }
     
+    private void OnSpecialSkill()
+    {
+        
+    }
 }
