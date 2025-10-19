@@ -17,18 +17,23 @@ public class PlayerScript : MonoBehaviour
     private Vector2 lastPosition;
     private Vector2 lastLookDir;
     [SerializeField] public static PlayerScript Instance;
+    [Header("Attack Prefab")]
+    [SerializeField] private GameObject currentAttackPrefab;
     [SerializeField] private GameObject AttackPrefab;
+    [SerializeField] private GameObject ChtuluAttackPrefab;
+    [SerializeField] private GameObject ProjectilePrefab; 
 	[SerializeField] bool gamepad = true;
 	private Vector2 rightJoystick;
     [SerializeField] private float lifepoint;
     [SerializeField] private DeathMenu deathMenu; 
+    [SerializeField] private UIPersoManager uIPersoManager;
 
     private void Awake()
     {
         if (Instance != null && Instance.gameObject != null)
             Destroy(Instance.gameObject);
         Instance = this;
-        
+        currentAttackPrefab = AttackPrefab;
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
@@ -50,19 +55,31 @@ public class PlayerScript : MonoBehaviour
         Vector2 attackDir;
 		if(gamepad){
 			attackDir = (rightJoystick == Vector2.zero) ? lastLookDir : rightJoystick;	
-        	Instantiate(AttackPrefab, (transform.position+(new Vector3(attackDir.x,attackDir.y)).normalized), 
+        	Instantiate(currentAttackPrefab, (transform.position+(new Vector3(attackDir.x,attackDir.y)).normalized), 
 			Quaternion.identity).GetComponent<Attack>().Initialize(Attack.Origin.Player,10,Vector3.zero);
 		}else{
 			Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			attackDir = mouse - transform.position;
-        	Instantiate(AttackPrefab, (transform.position+(new Vector3(attackDir.x,attackDir.y)).normalized), 
+        	Instantiate(currentAttackPrefab, (transform.position+(new Vector3(attackDir.x,attackDir.y)).normalized), 
 			Quaternion.identity).GetComponent<Attack>().Initialize(Attack.Origin.Player,10,Vector3.zero);
 		}
     }
 
     private void OnSecondarySkill()
     {
-        
+        Vector2 attackDir;
+        if(gamepad){
+            attackDir = (rightJoystick == Vector2.zero) ? lastLookDir : rightJoystick;	
+            Instantiate(AttackPrefab, (transform.position+(new Vector3(attackDir.x,attackDir.y)).normalized), 
+                Quaternion.identity).GetComponent<Attack>().Initialize(Attack.Origin.Player,10,Vector3.zero);
+        }
+        else
+        {
+            Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            attackDir = mouse - transform.position;
+            Instantiate(AttackPrefab, (transform.position + (new Vector3(attackDir.x, attackDir.y)).normalized),
+                Quaternion.identity).GetComponent<Attack>().Initialize(Attack.Origin.Player, 10, Vector3.zero);
+        }
     }
     
     private void OnUtilitySkill()
@@ -100,26 +117,32 @@ public class PlayerScript : MonoBehaviour
 
         if (collision.gameObject.CompareTag("SpiderCorpse"))
         {
-            speed = spiderLegSpeed;
+            uIPersoManager.UpgradeLeg();
         }
         
         if (collision.gameObject.CompareTag("EyesCorpse"))
         {
-            
+            uIPersoManager.UpgradeTete();
         }
        
         if (collision.gameObject.CompareTag("ChtulhuCorpse"))
         {
-            
+            uIPersoManager.UpgradeBody();
         }
        
         if (collision.gameObject.CompareTag("SlendermanCorpse"))
         {
-            
+            uIPersoManager.UpgradeBody();
         }
         
     }
+    #region Evolution
 
+    public void ChangeSpeed(float newSpeed)
+    {
+        this.speed = newSpeed;
+    }
+    #endregion
     private void TakeDamage(float damage)
     {
         lifepoint-=damage;

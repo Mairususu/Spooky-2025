@@ -36,14 +36,12 @@ public class Spawner : MonoBehaviour
                 if (SpawnCorr==null) SpawnCorr=StartCoroutine(SpawnNextCorr());
             }
         }
-        }
+    }
         
 
     IEnumerator SpawnNextCorr()
     {
         roundNumber++;
-        yield return new WaitForSeconds(5f);
-        SpawnNext();
         yield return new WaitForSeconds(5f);
         SpawnNext();
         
@@ -54,7 +52,7 @@ public class Spawner : MonoBehaviour
     {
         for (int i = 0; i < SpawnPoints.Count; i++)
         {
-            AliveEnemies.Add( Instantiate(Enemies[roundNumber],SpawnPoints[i],Quaternion.identity));
+            AliveEnemies.Add( Instantiate(Enemies[roundNumber],SpawnPoints[i],Quaternion.identity)); 
             AliveEnemies[i].GetComponent<EnemyScript>().SetPlayer(Player);
         }
     }
