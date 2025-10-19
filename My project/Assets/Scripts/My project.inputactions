@@ -239,10 +239,10 @@
                 {
                     "name": "",
                     "id": "7c7655e8-f0e5-4800-aa43-10cdf39e7246",
-                    "path": "",
+                    "path": "<Keyboard>/j",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "PrimarySkill",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -250,10 +250,10 @@
                 {
                     "name": "",
                     "id": "f3402f46-1f2d-49f7-aa49-2192d80144e4",
-                    "path": "",
+                    "path": "<Keyboard>/k",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "SecondarySkill",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -261,10 +261,10 @@
                 {
                     "name": "",
                     "id": "cfb2d688-dcc6-4c6c-93ec-9bfd5d1dcb4b",
-                    "path": "",
+                    "path": "<Keyboard>/l",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "UtilitySkill",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -272,10 +272,10 @@
                 {
                     "name": "",
                     "id": "d230cc66-2b85-446d-b36b-6ae5aaf1f4ab",
-                    "path": "",
+                    "path": "<Keyboard>/semicolon",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "SpecialSkill",
                     "isComposite": false,
                     "isPartOfComposite": false
