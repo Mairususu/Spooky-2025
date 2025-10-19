@@ -11,7 +11,13 @@ public class Spawner : MonoBehaviour
     [SerializeField] private GameObject EnemyContainer;
     [SerializeField] private List<GameObject> AliveEnemies;
     [SerializeField] private GameObject Player;
+    public static  Spawner Instance;
     private int roundNumber=0;
+
+    void Awake()
+    {
+        Instance = this;
+    }
     void Start()
     {
         SpawnPoints = new List<Vector3>();
@@ -33,5 +39,10 @@ public class Spawner : MonoBehaviour
             AliveEnemies[i].GetComponent<EnemyScript>().SetPlayer(Player);
         }
         roundNumber++;
+    }
+
+    public void RemoveList(GameObject obj)
+    {
+        AliveEnemies.Remove(obj);
     }
 }
