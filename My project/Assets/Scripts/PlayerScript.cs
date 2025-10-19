@@ -14,7 +14,7 @@ public class PlayerScript : MonoBehaviour
     private Vector2 lastPosition;
     [SerializeField] public static PlayerScript Instance;
     [SerializeField] private GameObject AttackPrefab;
-	private bool gamepad = true;
+	[SerializeField] bool gamepad = true;
 	private Vector2 rightJoystick;
 
     private void Awake()
@@ -54,14 +54,15 @@ public class PlayerScript : MonoBehaviour
 
     private void OnPrimarySkill()
     {
+        
 		if(gamepad){
         	Instantiate(AttackPrefab, (transform.position+(new Vector3(rightJoystick.x,rightJoystick.y)).normalized), 
-			Quaternion.identity).GetComponent<Attack>().Initialize(Attack.Origin.Player,10,0.1f,Vector3.zero);
+			Quaternion.identity).GetComponent<Attack>().Initialize(Attack.Origin.Player,10,Vector3.zero);
 		}else{
 			Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			Vector2 attackDir = mouse - transform.position;
-        	Instantiate(AttackPrefab, (transform.position+(new Vector3(_rigidbody.velocity.x,_rigidbody.velocity.y)).normalized), 
-			Quaternion.identity).GetComponent<Attack>().Initialize(Attack.Origin.Player,10,0.1f,Vector3.zero);
+        	Instantiate(AttackPrefab, (transform.position+(new Vector3(attackDir.x,attackDir.y)).normalized), 
+			Quaternion.identity).GetComponent<Attack>().Initialize(Attack.Origin.Player,10,Vector3.zero);
 		}
     }
 
