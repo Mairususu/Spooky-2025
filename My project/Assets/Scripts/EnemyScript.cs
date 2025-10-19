@@ -31,10 +31,10 @@ public class EnemyScript : MonoBehaviour
     {
         
     }
-    void OnTriggerEnter ( Collider other)
+    void OnTriggerEnter2D ( Collider2D other)
     {
         if (!other.gameObject.CompareTag("PlayerAttack")) return;
-        TakeDamage(other.gameObject.GetComponent<PlayersAttack>().damage);
+        TakeDamage(other.gameObject.GetComponent<Attack>().damage);
     }
 
     public void TakeDamage(float damage)

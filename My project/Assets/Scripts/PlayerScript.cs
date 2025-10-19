@@ -49,6 +49,7 @@ public class PlayerScript : MonoBehaviour
     private void OnPrimarySkill()
     {
         
+        Instantiate(AttackPrefab, (transform.position+(new Vector3(_rigidbody.velocity.x,_rigidbody.velocity.y)).normalized), Quaternion.identity).GetComponent<Attack>().Initialize(Attack.Origin.Player,10);
     }
 
     private void OnSecondarySkill()
