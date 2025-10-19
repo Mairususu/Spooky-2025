@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,8 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private GameObject AttackPrefab;
 	[SerializeField] bool gamepad = true;
 	private Vector2 rightJoystick;
+    [SerializeField] private float lifepoint;
+    [SerializeField] private DeathMenu deathMenu; 
 
     private void Awake()
     {
@@ -78,5 +81,24 @@ public class PlayerScript : MonoBehaviour
     private void OnSpecialSkill()
     {
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log(collision.gameObject.name);
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            TakeDamage(collision.gameObject.GetComponent<EnemyScript>().damage);
+        }
+        
+    }
+
+    private void TakeDamage(float damage)
+    {
+        lifepoint-=damage;
+        if (lifepoint == 0)
+        {
+            deathMenu.TheEnd();
+        }
     }
 }
