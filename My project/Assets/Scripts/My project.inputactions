@@ -249,11 +249,33 @@
                 },
                 {
                     "name": "",
+                    "id": "a27f7f95-c73c-4993-b420-3b8f9e4ad970",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "PrimarySkill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "f3402f46-1f2d-49f7-aa49-2192d80144e4",
                     "path": "<Keyboard>/k",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
+                    "action": "SecondarySkill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "aea72524-d41e-4def-83e2-7e7afb0eca38",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
                     "action": "SecondarySkill",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -271,11 +293,33 @@
                 },
                 {
                     "name": "",
+                    "id": "16087ac3-a9fe-4d27-8f42-b7df465fe3f7",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "UtilitySkill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "d230cc66-2b85-446d-b36b-6ae5aaf1f4ab",
                     "path": "<Keyboard>/semicolon",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
+                    "action": "SpecialSkill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9535f3bb-f2f2-4ba6-867b-ccb0fe72c3e2",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
                     "action": "SpecialSkill",
                     "isComposite": false,
                     "isPartOfComposite": false
