@@ -95,6 +95,11 @@ public class PlayerScript : MonoBehaviour
         {
             if(collision.GetComponent<Attack>().attackFrom!=Attack.Origin.Player) TakeDamage(collision.gameObject.GetComponent<Attack>().damage);
         }
+
+        if (collision.gameObject.CompareTag("SpiderCorpse"))
+        {
+            
+        }
         
     }
 
