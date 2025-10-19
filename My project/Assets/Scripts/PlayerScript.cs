@@ -8,7 +8,9 @@ public class PlayerScript : MonoBehaviour
 {
 
     private Rigidbody2D _rigidbody;
-    [SerializeField] private float speed = 5.0f;
+    [SerializeField] private float speed = 4.0f;
+    [SerializeField] private float spiderLegSpeed = 6.0f;
+    
     [SerializeField] private float dashDistance = 2.0f;
     [SerializeField] private float dashCooldown = 0.5f;
     private float cooldownStart = 0.0f;
@@ -97,6 +99,21 @@ public class PlayerScript : MonoBehaviour
         }
 
         if (collision.gameObject.CompareTag("SpiderCorpse"))
+        {
+            speed = spiderLegSpeed;
+        }
+        
+        if (collision.gameObject.CompareTag("EyesCorpse"))
+        {
+            
+        }
+       
+        if (collision.gameObject.CompareTag("ChtulhuCorpse"))
+        {
+            
+        }
+       
+        if (collision.gameObject.CompareTag("SlendermanCorpse"))
         {
             
         }
