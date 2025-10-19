@@ -12,6 +12,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private float dashCooldown = 0.5f;
     private float cooldownStart = 0.0f;
     private Vector2 lastPosition;
+    private Vector2 lastLookDir;
     [SerializeField] public static PlayerScript Instance;
     [SerializeField] private GameObject AttackPrefab;
 	[SerializeField] bool gamepad = true;
@@ -27,7 +28,9 @@ public class PlayerScript : MonoBehaviour
     }
 
     private void OnLook(InputValue value){
-		rightJoystick = value.Get<Vector2>();
+        Vector2 val = value.Get<Vector2>();
+		rightJoystick = val;
+        if (val.magnitude >= 0.5) lastLookDir = val;
 	}
  
     private void OnMove(InputValue value)
@@ -39,13 +42,14 @@ public class PlayerScript : MonoBehaviour
 
     private void OnPrimarySkill()
     {
-        
+        Vector2 attackDir;
 		if(gamepad){
-        	Instantiate(AttackPrefab, (transform.position+(new Vector3(rightJoystick.x,rightJoystick.y)).normalized), 
+			attackDir = (rightJoystick == Vector2.zero) ? lastLookDir : rightJoystick;	
+        	Instantiate(AttackPrefab, (transform.position+(new Vector3(attackDir.x,attackDir.y)).normalized), 
 			Quaternion.identity).GetComponent<Attack>().Initialize(Attack.Origin.Player,10,Vector3.zero);
 		}else{
 			Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			Vector2 attackDir = mouse - transform.position;
+			attackDir = mouse - transform.position;
         	Instantiate(AttackPrefab, (transform.position+(new Vector3(attackDir.x,attackDir.y)).normalized), 
 			Quaternion.identity).GetComponent<Attack>().Initialize(Attack.Origin.Player,10,Vector3.zero);
 		}
