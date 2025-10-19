@@ -37,21 +37,6 @@ public class PlayerScript : MonoBehaviour
         if (val.magnitude >= 0.2) lastPosition = val;
     }
 
-    private void OnDash()
-    {
-        if (Time.time - cooldownStart >= dashCooldown)
-        {
-            cooldownStart = Time.time;
-            if (_rigidbody.velocity == Vector2.zero)
-            {
-                _rigidbody.position += lastPosition.normalized * dashDistance;
-            }else
-            {
-                _rigidbody.position += _rigidbody.velocity.normalized * dashDistance;
-            }
-        }
-    }
-
     private void OnPrimarySkill()
     {
         
@@ -73,7 +58,17 @@ public class PlayerScript : MonoBehaviour
     
     private void OnUtilitySkill()
     {
-        
+        if (Time.time - cooldownStart >= dashCooldown)
+        {
+            cooldownStart = Time.time;
+            if (_rigidbody.velocity == Vector2.zero)
+            {
+                _rigidbody.position += lastPosition.normalized * dashDistance;
+            }else
+            {
+                _rigidbody.position += _rigidbody.velocity.normalized * dashDistance;
+            }
+        }       
     }
     
     private void OnSpecialSkill()
