@@ -134,6 +134,7 @@ MonoBehaviour:
   dashDistance: 1.5
   dashCooldown: 0.5
   AttackPrefab: {fileID: 4142836738020709888, guid: d63c2d337abec3530861fce1e7411bdc, type: 3}
+  gamepad: 1
 --- !u!61 &5563078416210782143
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -163,7 +164,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

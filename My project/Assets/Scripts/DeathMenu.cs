@@ -5,6 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class DeathMenu : MonoBehaviour
 {
+    
+    [SerializeField] private GameObject deathMenu;
+
+    public void TheEnd()
+    {
+        Time.timeScale = 0;
+        deathMenu.SetActive(true);
+    }
     public void Tomain()
     {
         SceneManager.LoadScene("Bait");
