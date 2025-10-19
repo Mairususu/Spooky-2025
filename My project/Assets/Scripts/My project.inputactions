@@ -238,17 +238,6 @@
                 },
                 {
                     "name": "",
-                    "id": "7c7655e8-f0e5-4800-aa43-10cdf39e7246",
-                    "path": "<Keyboard>/j",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "PrimarySkill",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "a27f7f95-c73c-4993-b420-3b8f9e4ad970",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
@@ -260,12 +249,12 @@
                 },
                 {
                     "name": "",
-                    "id": "f3402f46-1f2d-49f7-aa49-2192d80144e4",
-                    "path": "<Keyboard>/k",
+                    "id": "f22d997a-8da7-46e1-80fe-fabb54f5e654",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "SecondarySkill",
+                    "action": "PrimarySkill",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -282,12 +271,12 @@
                 },
                 {
                     "name": "",
-                    "id": "cfb2d688-dcc6-4c6c-93ec-9bfd5d1dcb4b",
-                    "path": "<Keyboard>/l",
+                    "id": "bfa401b2-f772-490d-aff7-67d0cf2d63bb",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "UtilitySkill",
+                    "action": "SecondarySkill",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -304,12 +293,12 @@
                 },
                 {
                     "name": "",
-                    "id": "d230cc66-2b85-446d-b36b-6ae5aaf1f4ab",
-                    "path": "<Keyboard>/semicolon",
+                    "id": "2e856c05-0f91-44f9-98ae-3865e4106459",
+                    "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "SpecialSkill",
+                    "action": "UtilitySkill",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -320,6 +309,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
+                    "action": "SpecialSkill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "11776770-660d-48ae-9c45-fd664c1e4b41",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "SpecialSkill",
                     "isComposite": false,
                     "isPartOfComposite": false
