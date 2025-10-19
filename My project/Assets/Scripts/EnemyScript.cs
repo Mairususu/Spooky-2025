@@ -23,7 +23,7 @@ public class EnemyScript : MonoBehaviour
     }
     public IEnumerator AttackCor()
     {
-        
+        yield return new WaitForSeconds(1f);
     }
     // Update is called once per frame
     void Update()
