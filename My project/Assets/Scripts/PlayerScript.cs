@@ -93,7 +93,7 @@ public class PlayerScript : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Attack"))
         {
-            if(collision.GetComponent<Attack>().attackFrom!=Attack.Origin.Player) TakeDamage(collision.gameObject.GetComponent<Attack>().damage);
+            if(collision.GetComponent<Attack>().attackFrom==Attack.Origin.Enemy) TakeDamage(collision.gameObject.GetComponent<Attack>().damage);
         }
 
         if (collision.gameObject.CompareTag("SpiderCorpse"))

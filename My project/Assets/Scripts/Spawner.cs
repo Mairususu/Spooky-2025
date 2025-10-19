@@ -13,6 +13,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private GameObject Player;
     public static  Spawner Instance;
     private int roundNumber=0;
+    private Coroutine SpawnCorr;
 
     void Awake()
     {
@@ -28,7 +29,25 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(AliveEnemies.Count==0) SpawnNext();
+        if (roundNumber < Enemies.Count)
+        {
+            if (AliveEnemies.Count == 0)
+            {
+                if (SpawnCorr==null) SpawnCorr=StartCoroutine(SpawnNextCorr());
+            }
+        }
+        }
+        
+
+    IEnumerator SpawnNextCorr()
+    {
+        roundNumber++;
+        yield return new WaitForSeconds(5f);
+        SpawnNext();
+        yield return new WaitForSeconds(5f);
+        SpawnNext();
+        
+        roundNumber++;
     }
 
     private void SpawnNext()
@@ -38,7 +57,6 @@ public class Spawner : MonoBehaviour
             AliveEnemies.Add( Instantiate(Enemies[roundNumber],SpawnPoints[i],Quaternion.identity));
             AliveEnemies[i].GetComponent<EnemyScript>().SetPlayer(Player);
         }
-        roundNumber++;
     }
 
     public void RemoveList(GameObject obj)

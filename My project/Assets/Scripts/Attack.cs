@@ -8,7 +8,7 @@ public class Attack : MonoBehaviour
     public float damage = 10f;
     public Origin attackFrom;
     public enum Origin{
-        Player ,EnemyProj, EnemyRanged
+        Player ,Enemy
     }
     
     public void Initialize(Origin from,float damage,Vector3 position)
@@ -16,8 +16,8 @@ public class Attack : MonoBehaviour
         attackFrom=from;
         this.damage=damage;
         pos = position;
-        if (attackFrom==Origin.Player) Destroy(gameObject, .1f);
-        else if (attackFrom==Origin.EnemyProj) Destroy(gameObject,5f);
+        if (attackFrom==Origin.Player ) Destroy(gameObject, .1f);
+        else if (attackFrom==Origin.Enemy) Destroy(gameObject,5f);
         else Destroy(gameObject,.3f);
         transform.GetComponent<Rigidbody2D>().velocity = pos.normalized*2;
     }
