@@ -19,8 +19,12 @@ public class EnemyScript : MonoBehaviour
     void Awake()
     {
         Player=PlayerScript.Instance ;
+        StartCoroutine(AttackCor());
     }
-
+    public IEnumerator AttackCor()
+    {
+        yield return new WaitForSeconds(1f);
+    }
     // Update is called once per frame
     void Update()
     {

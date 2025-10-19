@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using Random = UnityEngine.Random;
 using System;
@@ -8,6 +9,7 @@ public class EnemySpawner {
     
     [SerializeField] private List<GameObject> SpawnPoints;
     [SerializeField] private List<EnemyScript>  Enemies;
+    [SerializeField] private GameObject EnemyContainer;
     private float roundNumber;
 
     void Awake()
@@ -17,7 +19,7 @@ public class EnemySpawner {
 
     private void spawnNext()
     {
-        //Instantiate(Enemies[roundNumber],EnemyContainer);
+        //for (int i=0;i<5;i++) Instantiate(Enemies[roundNumber],EnemyContainer);
         roundNumber++;
     }
     

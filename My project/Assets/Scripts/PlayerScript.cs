@@ -12,8 +12,11 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private float dashCooldown = 0.5f;
     private float cooldownStart = 0.0f;
     private Vector2 lastPosition;
+    private Vector2 lastLookDir;
     [SerializeField] public static PlayerScript Instance;
     [SerializeField] private GameObject AttackPrefab;
+	[SerializeField] bool gamepad = true;
+	private Vector2 rightJoystick;
 
     private void Awake()
     {
@@ -23,7 +26,13 @@ public class PlayerScript : MonoBehaviour
         
         _rigidbody = GetComponent<Rigidbody2D>();
     }
-    
+
+    private void OnLook(InputValue value){
+        Vector2 val = value.Get<Vector2>();
+		rightJoystick = val;
+        if (val.magnitude >= 0.5) lastLookDir = val;
+	}
+ 
     private void OnMove(InputValue value)
     {
         Vector2 val = value.Get<Vector2>();
@@ -31,7 +40,27 @@ public class PlayerScript : MonoBehaviour
         if (val.magnitude >= 0.2) lastPosition = val;
     }
 
-    private void OnDash()
+    private void OnPrimarySkill()
+    {
+        Vector2 attackDir;
+		if(gamepad){
+			attackDir = (rightJoystick == Vector2.zero) ? lastLookDir : rightJoystick;	
+        	Instantiate(AttackPrefab, (transform.position+(new Vector3(attackDir.x,attackDir.y)).normalized), 
+			Quaternion.identity).GetComponent<Attack>().Initialize(Attack.Origin.Player,10,Vector3.zero);
+		}else{
+			Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			attackDir = mouse - transform.position;
+        	Instantiate(AttackPrefab, (transform.position+(new Vector3(attackDir.x,attackDir.y)).normalized), 
+			Quaternion.identity).GetComponent<Attack>().Initialize(Attack.Origin.Player,10,Vector3.zero);
+		}
+    }
+
+    private void OnSecondarySkill()
+    {
+        
+    }
+    
+    private void OnUtilitySkill()
     {
         if (Time.time - cooldownStart >= dashCooldown)
         {
@@ -43,23 +72,7 @@ public class PlayerScript : MonoBehaviour
             {
                 _rigidbody.position += _rigidbody.velocity.normalized * dashDistance;
             }
-        }
-    }
-
-    private void OnPrimarySkill()
-    {
-        
-        Instantiate(AttackPrefab, (transform.position+(new Vector3(_rigidbody.velocity.x,_rigidbody.velocity.y)).normalized), Quaternion.identity).GetComponent<Attack>().Initialize(Attack.Origin.Player,10);
-    }
-
-    private void OnSecondarySkill()
-    {
-        
-    }
-    
-    private void OnUtilitySkill()
-    {
-        
+        }       
     }
     
     private void OnSpecialSkill()
