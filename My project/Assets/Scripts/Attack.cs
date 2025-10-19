@@ -19,11 +19,4 @@ public class Attack : MonoBehaviour
         attackFrom=from;
         this.damage=damage;
     }
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-         
-        }
-    }
 }

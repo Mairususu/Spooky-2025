@@ -6,7 +6,7 @@ public class EnemyScript : MonoBehaviour
 {
     [SerializeField] private float lifepoint = 50f;
     [SerializeField] private float speed = 5f;
-    [SerializeField] private GameObject Player;
+    [SerializeField] private PlayerScript Player;
 
     [SerializeField] private EnemyType type;
 
@@ -18,7 +18,7 @@ public class EnemyScript : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        Player=PlayerScript.Instance.gameObject ;
+        Player=PlayerScript.Instance ;
     }
 
     // Update is called once per frame
