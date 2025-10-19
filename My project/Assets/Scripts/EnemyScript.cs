@@ -16,7 +16,7 @@ public class EnemyScript : MonoBehaviour
 
     public enum EnemyType
     {
-        Distance,melee
+        Distance,Melee
     }
     
     
@@ -24,6 +24,7 @@ public class EnemyScript : MonoBehaviour
     public void SetPlayer(GameObject player)
     {
         Player = player;
+        Debug.Log("Done");
     }
     public IEnumerator AttackCor()
     {

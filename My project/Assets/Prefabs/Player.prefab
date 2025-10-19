@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2614477577509683048}
   - component: {fileID: 8200307215665593166}
   - component: {fileID: 5265323007888855637}
-  - component: {fileID: 7134141961269353717}
   - component: {fileID: 5563078416210782143}
   - component: {fileID: 1880889391377318211}
+  - component: {fileID: 5603246757237586831}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -118,23 +118,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &7134141961269353717
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3597824541361764849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bbf9f24a4c83dbd69f9edbc6008a87b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  dashDistance: 1.5
-  dashCooldown: 0.5
-  AttackPrefab: {fileID: 4142836738020709888, guid: d63c2d337abec3530861fce1e7411bdc, type: 3}
-  gamepad: 1
 --- !u!61 &5563078416210782143
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -207,3 +190,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5603246757237586831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3597824541361764849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee5376c121a08e4d2a5324493e6dabdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  dashDistance: 2
+  dashCooldown: 0.5
+  AttackPrefab: {fileID: 4142836738020709888, guid: d63c2d337abec3530861fce1e7411bdc, type: 3}
+  gamepad: 0
+  lifepoint: 0
+  deathMenu: {fileID: 4035432842894968842, guid: 103a78cc487a936468bfa50d4b6ccca9, type: 3}
