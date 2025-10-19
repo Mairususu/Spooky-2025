@@ -4,9 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - PlayerAttack
   - Enemy
   - Arene
+  - Attack
   layers:
   - Default
   - TransparentFX

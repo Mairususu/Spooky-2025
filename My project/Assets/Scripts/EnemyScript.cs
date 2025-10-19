@@ -11,7 +11,8 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] public float damage;
 
     [SerializeField] private EnemyType type;
-
+    [SerializeField] private bool First=true;
+    [SerializeField] private float cooldown=0;
 
     public enum EnemyType
     {
@@ -37,20 +38,29 @@ public class EnemyScript : MonoBehaviour
     private void GoToPlayer()
     {
         float distance =Vector2.Distance(Player.transform.position, transform.position);
-        Vector2 direction = Player.transform.position - transform.position;
+        Vector3 direction = Player.transform.position - transform.position;
         
         transform.position =Vector2.MoveTowards(this.transform.position,Player.transform.position,speed*Time.deltaTime);
+        if (type == EnemyType.Distance)
+        {
+            if (distance <= 6 && (Time.time- cooldown>.5f))
+            {
+                Debug.Log(distance);
+                Instantiate(Attackprefab, transform.position+direction.normalized, Quaternion.identity).GetComponent<Attack>().Initialize(Attack.Origin.Enemy,5,direction.normalized);  
+                cooldown = Time.time;
+            }
+        }
         
     }
     void OnTriggerEnter2D ( Collider2D other)
     {
-        if (!other.gameObject.CompareTag("PlayerAttack")) return;
-        TakeDamage(other.gameObject.GetComponent<Attack>().damage);
+        if (!other.gameObject.CompareTag("Attack")) return;
+        if(other.GetComponent<Attack>().attackFrom==Attack.Origin.Player) TakeDamage(other.gameObject.GetComponent<Attack>().damage);
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float attackDamage)
     {
-        lifepoint-=damage;
+        lifepoint-=attackDamage;
         if(lifepoint<=0) Destroy(gameObject);
     }
 }

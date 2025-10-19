@@ -1,16 +1,15 @@
-using System;
-using System.Collections;
+/* using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerScript : MonoBehaviour
 {
-
     private Rigidbody2D _rigidbody;
     [SerializeField] private float speed = 5.0f;
-    [SerializeField] private float dashDistance = 2.0f;
-    [SerializeField] private float dashCooldown = 0.5f;
+    [SerializeField] private float dashSpeed = 25.0f;
+    [SerializeField] private float dashDuration = 0.5f;
+    [SerializeField] private float dashCooldown = 1.0f;
     private float cooldownStart = 0.0f;
     private Vector2 lastPosition;
     private Vector2 lastLookDir;
@@ -18,8 +17,6 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private GameObject AttackPrefab;
 	[SerializeField] bool gamepad = true;
 	private Vector2 rightJoystick;
-    [SerializeField] private float lifepoint;
-    [SerializeField] private DeathMenu deathMenu; 
 
     private void Awake()
     {
@@ -38,9 +35,17 @@ public class PlayerScript : MonoBehaviour
  
     private void OnMove(InputValue value)
     {
-        Vector2 val = value.Get<Vector2>();
-        _rigidbody.velocity = val * speed;
-        if (val.magnitude >= 0.2) lastPosition = val;
+	    Vector2 val = value.Get<Vector2>();
+	    if (cooldownStart == 0.0f || (Time.time - cooldownStart >= dashDuration))
+	    {
+		    _rigidbody.velocity = val * speed * Time.deltaTime * 50.0f;
+	    }
+	    else
+	    {
+		    Debug.Log(val);
+		    _rigidbody.velocity = val * dashSpeed * Time.deltaTime * 50.0f;
+	    }
+	    if (val.magnitude >= 0.2) lastPosition = val;
     }
 
     private void OnPrimarySkill()
@@ -67,43 +72,15 @@ public class PlayerScript : MonoBehaviour
     {
         if (Time.time - cooldownStart >= dashCooldown)
         {
+	        Debug.Log("dashing");
             cooldownStart = Time.time;
-            if (_rigidbody.velocity == Vector2.zero)
-            {
-                _rigidbody.position += lastPosition.normalized * dashDistance;
-            }else
-            {
-                _rigidbody.position += _rigidbody.velocity.normalized * dashDistance;
-            }
-        }       
+        }
     }
     
     private void OnSpecialSkill()
     {
         
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log(collision.gameObject.name);
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            TakeDamage(collision.gameObject.GetComponent<EnemyScript>().damage);
-        }
-
-        if (collision.gameObject.CompareTag("Attack"))
-        {
-            if(collision.GetComponent<Attack>().attackFrom==Attack.Origin.Enemy) TakeDamage(collision.gameObject.GetComponent<Attack>().damage);
-        }
-        
-    }
-
-    private void TakeDamage(float damage)
-    {
-        lifepoint-=damage;
-        if (lifepoint == 0)
-        {
-            deathMenu.TheEnd();
-        }
-    }
 }
+
+*/
