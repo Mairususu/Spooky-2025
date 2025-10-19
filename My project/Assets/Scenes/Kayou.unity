@@ -268,7 +268,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7134141961269353717, guid: 88216555629e2b24d83758b8966586ee, type: 3}
       propertyPath: gamepad
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7134141961269353717, guid: 88216555629e2b24d83758b8966586ee, type: 3}
+      propertyPath: dashSpeed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7134141961269353717, guid: 88216555629e2b24d83758b8966586ee, type: 3}
+      propertyPath: dashDuration
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
