@@ -82,5 +82,3 @@ public class PlayerScript : MonoBehaviour
         
     }
 }
-
-
