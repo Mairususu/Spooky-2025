@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7089573144681230587}
   - component: {fileID: 751459231503664380}
   m_Layer: 0
-  m_Name: ProjectilePrefab
+  m_Name: ChtulhuPrefab
   m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

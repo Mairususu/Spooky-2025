@@ -9,30 +9,25 @@ public class PlayerScript : MonoBehaviour
 
     private Rigidbody2D _rigidbody;
     [SerializeField] private float speed = 4.0f;
-    [SerializeField] private float spiderLegSpeed = 6.0f;
     
     [SerializeField] private float dashDistance = 2.0f;
     [SerializeField] private float dashCooldown = 0.5f;
     private float cooldownStart = 0.0f;
     private Vector2 lastPosition;
     private Vector2 lastLookDir;
-    [SerializeField] public static PlayerScript Instance;
+    [SerializeField] bool gamepad = true;
+    private Vector2 rightJoystick;
     [Header("Attack Prefab")]
     [SerializeField] private GameObject currentAttackPrefab;
     [SerializeField] private GameObject AttackPrefab;
     [SerializeField] private GameObject ChtuluAttackPrefab;
     [SerializeField] private GameObject ProjectilePrefab; 
-	[SerializeField] bool gamepad = true;
-	private Vector2 rightJoystick;
     [SerializeField] private float lifepoint;
     [SerializeField] private DeathMenu deathMenu; 
     [SerializeField] private UIPersoManager uIPersoManager;
 
     private void Awake()
     {
-        if (Instance != null && Instance.gameObject != null)
-            Destroy(Instance.gameObject);
-        Instance = this;
         currentAttackPrefab = AttackPrefab;
         _rigidbody = GetComponent<Rigidbody2D>();
     }
