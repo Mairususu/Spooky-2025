@@ -16,7 +16,7 @@ public class EnemyScript : MonoBehaviour
 
     public enum EnemyType
     {
-        Distance,Melee
+        Distance,Melee,Ranged
     }
     
     
@@ -44,11 +44,18 @@ public class EnemyScript : MonoBehaviour
         transform.position =Vector2.MoveTowards(this.transform.position,Player.transform.position,speed*Time.deltaTime);
         if (type == EnemyType.Distance)
         {
-            if (distance <= 6 && (Time.time- cooldown>.5f))
+            if (distance <= 6 && (Time.time- cooldown>1f))
             {
                 Debug.Log(distance);
-                Instantiate(Attackprefab, transform.position+direction.normalized, Quaternion.identity).GetComponent<Attack>().Initialize(Attack.Origin.Enemy,5,direction.normalized);  
+                Instantiate(Attackprefab, transform.position+direction.normalized, Quaternion.identity).GetComponent<Attack>().Initialize(Attack.Origin.EnemyProj,5,direction.normalized);  
                 cooldown = Time.time;
+            }
+        }
+        else if (type == EnemyType.Ranged)
+        {
+            if (distance <= 3.5 && (Time.time - cooldown > 2f))
+            {
+                Instantiate(Attackprefab,transform.position+direction.normalized,Quaternion.identity).GetComponent<Attack>().Initialize(Attack.Origin.EnemyRanged,5,Vector3.zero);  
             }
         }
         
@@ -62,6 +69,10 @@ public class EnemyScript : MonoBehaviour
     public void TakeDamage(float attackDamage)
     {
         lifepoint-=attackDamage;
-        if(lifepoint<=0) Destroy(gameObject);
+        if (lifepoint <= 0)
+        {
+            Spawner.Instance.RemoveList(gameObject);
+            Destroy(gameObject);
+        }
     }
 }

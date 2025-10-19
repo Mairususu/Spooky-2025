@@ -259,31 +259,7 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!1 &928081750 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3597824541361764849, guid: 88216555629e2b24d83758b8966586ee, type: 3}
-  m_PrefabInstance: {fileID: 1153373656269388490}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &928081757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 928081750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee5376c121a08e4d2a5324493e6dabdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  dashDistance: 2
-  dashCooldown: 0.5
-  AttackPrefab: {fileID: 0}
-  gamepad: 1
-  lifepoint: 0
-  deathMenu: {fileID: 0}
---- !u!1001 &1153373656269388490
+--- !u!1001 &1740695028
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -335,30 +311,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 7134141961269353717, guid: 88216555629e2b24d83758b8966586ee, type: 3}
-      propertyPath: gamepad
-      value: 0
+    - target: {fileID: 5603246757237586831, guid: 88216555629e2b24d83758b8966586ee, type: 3}
+      propertyPath: lifepoint
+      value: 50
       objectReference: {fileID: 0}
-    - target: {fileID: 7134141961269353717, guid: 88216555629e2b24d83758b8966586ee, type: 3}
-      propertyPath: dashSpeed
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 7134141961269353717, guid: 88216555629e2b24d83758b8966586ee, type: 3}
-      propertyPath: dashDuration
-      value: 0.1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7134141961269353717, guid: 88216555629e2b24d83758b8966586ee, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3597824541361764849, guid: 88216555629e2b24d83758b8966586ee, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 928081757}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88216555629e2b24d83758b8966586ee, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 286054151}
-  - {fileID: 1153373656269388490}
+  - {fileID: 1740695028}
