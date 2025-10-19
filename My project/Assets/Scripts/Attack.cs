@@ -15,7 +15,7 @@ public class Attack : MonoBehaviour
     private void Awake()
     {
         
-        Destroy(gameObject, duration);
+        Destroy(gameObject, duration*10f);
         transform.GetComponent<Rigidbody2D>().velocity = pos;
     }
     public void Initialize(Origin from,float damage, float duration,Vector3 position)
