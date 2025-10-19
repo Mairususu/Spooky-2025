@@ -10,17 +10,14 @@ public class Attack : MonoBehaviour
     public enum Origin{
         Player ,Enemy
     }
-
-    private void Awake()
-    {
-        
-        Destroy(gameObject, .1f);
-        transform.GetComponent<Rigidbody2D>().velocity = pos;
-    }
+    
     public void Initialize(Origin from,float damage,Vector3 position)
     {
         attackFrom=from;
         this.damage=damage;
         pos = position;
+        if (attackFrom==Origin.Player) Destroy(gameObject, .1f);
+        else Destroy(gameObject,10f);
+        transform.GetComponent<Rigidbody2D>().velocity = pos.normalized*5;
     }
 }

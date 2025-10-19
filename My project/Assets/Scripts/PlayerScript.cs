@@ -90,6 +90,11 @@ public class PlayerScript : MonoBehaviour
         {
             TakeDamage(collision.gameObject.GetComponent<EnemyScript>().damage);
         }
+
+        if (collision.gameObject.CompareTag("Attack"))
+        {
+            if(collision.GetComponent<Attack>().attackFrom==Attack.Origin.Enemy) TakeDamage(collision.gameObject.GetComponent<Attack>().damage);
+        }
         
     }
 
