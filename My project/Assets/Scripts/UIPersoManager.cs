@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class UIPersoManager : MonoBehaviour
 {
-    [SerializeField]  private List<Sprite> playerCorps;
-    [SerializeField] private Level corpsLevel;
+    [SerializeField]  private List<GameObject> playerCorps;
+    [SerializeField] public Level corpsLevel;
     [SerializeField]  private List<Sprite> playerTete;
-    [SerializeField] private Level teteLevel;
-    [SerializeField]  private List<Sprite> playerLeg;
-    [SerializeField] private Level legLevel;
+    [SerializeField] public Level teteLevel;
+    [SerializeField]  private List<GameObject> playerLeg;
+    [SerializeField] public Level legLevel;
     [Header("Renderer")]
     [SerializeField]  private SpriteRenderer tete;
-    [SerializeField]  private SpriteRenderer body;
-    [SerializeField]  private SpriteRenderer legs;
+    [SerializeField]  private GameObject body;
+    [SerializeField]  public GameObject legs;
     [SerializeField]  private PlayerScript playerScript;
 
     public enum Level
@@ -26,8 +26,14 @@ public class UIPersoManager : MonoBehaviour
     void Start()
     {
         corpsLevel = Level.Level0;
+        playerCorps[0].SetActive(true);
+        playerCorps[1].SetActive(false);
+        playerCorps[2].SetActive(false);
         teteLevel = Level.Level0;
         legLevel = Level.Level0;
+        playerLeg[0].SetActive(true);
+        playerLeg[1].SetActive(false);
+        playerLeg[2].SetActive(false);
     }
 
     // Update is called once per frame
@@ -36,14 +42,18 @@ public class UIPersoManager : MonoBehaviour
         if (corpsLevel == Level.Level0)
         {
             corpsLevel = Level.Level1;
-            body.sprite = playerCorps[1];
-            body.transform.localPosition =new Vector3(-0.281f,-0.095f,0);
+            playerCorps[0].SetActive(false);
+            body = playerCorps[1];
+            body.SetActive(true);
+            playerScript.UpgradeAttack();   
         }
         else if (corpsLevel == Level.Level1)
         {
             corpsLevel = Level.Level2;
-            body.sprite = playerCorps[2];
-            body.transform.localPosition = new Vector3(-0.5f,0.095f,0);
+            playerCorps[1].SetActive(false);
+            body = playerCorps[2];
+            body.SetActive(true);
+            playerScript.UpgradeAttack();
         } 
     }
     
@@ -70,17 +80,20 @@ public class UIPersoManager : MonoBehaviour
         if (legLevel == Level.Level0)
         {
             legLevel = Level.Level1;
-            legs.sprite = playerLeg[1];
-            legs.transform.localPosition = new Vector3(-0.5f,-0.968f,0);
+            playerLeg[0].SetActive(false);
+            legs = playerLeg[1];
+            legs.SetActive(true);
             playerScript.ChangeSpeed(6f);
             
         }
         else if (legLevel == Level.Level1)
         {
             legLevel = Level.Level2;
-            legs.sprite = playerLeg[2];
-            legs.transform.localPosition = new Vector3(0,-0.9689f,0);
+            playerLeg[1].SetActive(false);
+            legs = playerLeg[2];
+            legs.SetActive(true);
             playerScript.ChangeSpeed(8f);
+            playerScript.legAnimator= legs.GetComponent<Animator>();
         } 
     }
 

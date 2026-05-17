@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour
 {
@@ -8,13 +9,13 @@ public class Spawner : MonoBehaviour
         
     [SerializeField] private List<Vector3> SpawnPoints;
     [SerializeField] private List<GameObject>  Enemies;
+    [SerializeField] private List<GameObject> EnemyCorpses;
     [SerializeField] private GameObject EnemyContainer;
     [SerializeField] private List<GameObject> AliveEnemies;
     [SerializeField] private GameObject Player;
     public static  Spawner Instance;
     private int roundNumber=0;
-    private Coroutine SpawnCorr;
-
+    private bool isSpawning = false;
     void Awake()
     {
         Instance = this;
@@ -22,8 +23,11 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         SpawnPoints = new List<Vector3>();
-        SpawnPoints.Add(Vector3.zero);
-        SpawnPoints.Add(new Vector3(3,0,0));
+        SpawnPoints.Add(Vector3.up);
+        SpawnPoints.Add(new Vector3(-11,6,0));
+        SpawnPoints.Add(new Vector3(10,3,0));
+        SpawnPoints.Add(new Vector3(-8,4,0));
+        StartCoroutine(SpawnNextCorr());
     }
 
     // Update is called once per frame
@@ -31,9 +35,12 @@ public class Spawner : MonoBehaviour
     {
         if (roundNumber < Enemies.Count)
         {
-            if (AliveEnemies.Count == 0)
+            if (AliveEnemies.Count == 0 && !isSpawning)
             {
-                if (SpawnCorr==null) SpawnCorr=StartCoroutine(SpawnNextCorr());
+                
+                Debug.Log("No enemies");
+                roundNumber++;
+                StartCoroutine(SpawnNextCorr());
             }
         }
     }
@@ -41,11 +48,12 @@ public class Spawner : MonoBehaviour
 
     IEnumerator SpawnNextCorr()
     {
-        roundNumber++;
+        isSpawning = true;
         yield return new WaitForSeconds(5f);
         SpawnNext();
         
-        roundNumber++;
+        yield return new WaitForSeconds(5f);
+        isSpawning = false;
     }
 
     private void SpawnNext()
@@ -60,5 +68,9 @@ public class Spawner : MonoBehaviour
     public void RemoveList(GameObject obj)
     {
         AliveEnemies.Remove(obj);
+        if (Random.Range(0, 100) <= 10)
+        {
+            Instantiate(EnemyCorpses[roundNumber],obj.transform.parent.position,Quaternion.identity,obj.transform.parent);
+        }
     }
 }

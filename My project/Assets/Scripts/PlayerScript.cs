@@ -25,11 +25,13 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private float lifepoint;
     [SerializeField] private DeathMenu deathMenu; 
     [SerializeField] private UIPersoManager uIPersoManager;
+    [SerializeField] public Animator legAnimator;
 
     private void Awake()
     {
         currentAttackPrefab = AttackPrefab;
         _rigidbody = GetComponent<Rigidbody2D>();
+        legAnimator = uIPersoManager.legs.GetComponent<Animator>();
     }
 
     private void OnLook(InputValue value){
@@ -37,12 +39,19 @@ public class PlayerScript : MonoBehaviour
 		rightJoystick = val;
         if (val.magnitude >= 0.5) lastLookDir = val;
 	}
+
+    private void OnPause()
+    {
+        PauseMenu.Instance.Pause();
+    }
  
     private void OnMove(InputValue value)
     {
         Vector2 val = value.Get<Vector2>();
         _rigidbody.velocity = val * speed;
         if (val.magnitude >= 0.2) lastPosition = val;
+        if(uIPersoManager.legLevel!=UIPersoManager.Level.Level1) legAnimator.SetBool("isRunning",true);
+        if(uIPersoManager.corpsLevel==UIPersoManager.Level.Level0) legAnimator.SetBool("isRunning",true);
     }
 
     private void OnPrimarySkill()
@@ -99,7 +108,6 @@ public class PlayerScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.name);
         if (collision.gameObject.CompareTag("Enemy"))
         {
             TakeDamage(collision.gameObject.GetComponent<EnemyScript>().damage);
@@ -136,6 +144,14 @@ public class PlayerScript : MonoBehaviour
     public void ChangeSpeed(float newSpeed)
     {
         this.speed = newSpeed;
+    }
+
+    public void UpgradeAttack()
+    {
+        if (currentAttackPrefab != ChtuluAttackPrefab)
+        {
+            currentAttackPrefab = ChtuluAttackPrefab;
+        }
     }
     #endregion
     private void TakeDamage(float damage)

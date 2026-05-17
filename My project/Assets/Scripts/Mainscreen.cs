@@ -19,7 +19,7 @@ public class Mainscreen : MonoBehaviour
 
     public void Playgame()
     {
-        SceneManager.LoadScene("Luka");
+        SceneManager.LoadScene("Arena");
     }
     #region ChangePanel
 

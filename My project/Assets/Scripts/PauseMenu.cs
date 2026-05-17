@@ -6,16 +6,19 @@ public class PauseMenu : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private bool isPaused=false;
+    [SerializeField] public static PauseMenu Instance;
+
+    private void Awake()
+    {
+        if(Instance!=null&& Instance!=this) Destroy(gameObject);
+        Instance = this;
+    }
     void Start()
     {
         isPaused = false;
         pauseMenu.SetActive(false);
     }
 
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.P)) Pause();
-    }
 
     public void Pause()
     {

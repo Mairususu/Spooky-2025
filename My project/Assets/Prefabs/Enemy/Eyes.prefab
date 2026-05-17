@@ -104,9 +104,8 @@ MonoBehaviour:
   speed: 2
   Player: {fileID: 0}
   Attackprefab: {fileID: 4142836738020709888, guid: d63c2d337abec3530861fce1e7411bdc, type: 3}
-  damage: 25
+  damage: 10
   type: 0
-  First: 1
   cooldown: 0
 --- !u!58 &4214465249480893732
 CircleCollider2D:

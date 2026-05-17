@@ -11,7 +11,6 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] public float damage;
 
     [SerializeField] private EnemyType type;
-    [SerializeField] private bool First=true;
     [SerializeField] private float cooldown=0;
 
     public enum EnemyType
@@ -24,7 +23,6 @@ public class EnemyScript : MonoBehaviour
     public void SetPlayer(GameObject player)
     {
         Player = player;
-        Debug.Log("Done");
     }
     public IEnumerator AttackCor()
     {
@@ -46,7 +44,6 @@ public class EnemyScript : MonoBehaviour
         {
             if (distance <= 6 && (Time.time- cooldown>1f))
             {
-                Debug.Log(distance);
                 Instantiate(Attackprefab, transform.position+direction.normalized, Quaternion.identity).GetComponent<Attack>().Initialize(Attack.Origin.Enemy,5,direction.normalized);  
                 cooldown = Time.time;
             }
@@ -64,7 +61,7 @@ public class EnemyScript : MonoBehaviour
         lifepoint-=attackDamage;
         if (lifepoint <= 0)
         {
-            //Spawner.Instance.RemoveList(gameObject);
+            Spawner.Instance.RemoveList(gameObject);
             Destroy(gameObject);
         }
     }
